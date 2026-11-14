@@ -3,9 +3,18 @@
 A two-layer hybrid network intrusion detection and automated response system built as a graduation project for a B.Sc. in Computer Engineering (Network & Security track).
 
 The system combines **Snort 3 signature-based detection** with an **Isolation Forest machine learning model** for anomaly detection, feeds alerts through **Wazuh SIEM**, stores them in **SQLite**, triggers **automated UFW firewall responses**, and displays everything on a live **Streamlit dashboard**.
-
 ---
+## Dashboard Preview
 
+| Overview Dashboard | Operations Dashboard |
+|:---:|:---:|
+| ![Overview Dashboard](Images/Dash1.png) | ![Operations Dashboard](Images/Dash2.png) |
+| Real-time statistics and monitoring charts | System health, accuracy metrics, and response logs |
+
+### Login Page
+
+![IDRS Login Page](Images/login%20page.png)
+---
 ## Architecture
 ```
 Network Traffic
