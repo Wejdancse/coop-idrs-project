@@ -256,9 +256,3 @@ Snort running on the defender VM couldn't see traffic between other VMs until Vi
 - Deploy on physical hardware with real network traffic
 
 ---
-
-## Author
-
-**Wejdan Aljohani**
-B.Sc. Computer Engineering — Network & Security
-Yanbu Industrial College, 2026
