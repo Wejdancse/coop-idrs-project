@@ -1,0 +1,13 @@
+[Unit]
+Description=IDRS Snort 3 IDS
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+ExecStart=/usr/local/bin/snort -i enp0s3 -c /usr/local/etc/snort/snort.lua -l /var/log/snort
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target

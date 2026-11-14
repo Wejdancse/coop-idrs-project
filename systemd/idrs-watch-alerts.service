@@ -1,0 +1,14 @@
+[Unit]
+Description=IDRS Alert Watcher (Python)
+After=network-online.target wazuh-manager.service
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=root
+ExecStart=/usr/bin/python3 /home/wejdan/idrs/scripts/watch_alerts.py
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,58 @@
+<!-- Local Decoders -->
+
+<!-- Modify it at your will. -->
+<!-- Copyright (C) 2015, Wazuh Inc. -->
+
+<!--
+  - Allowed static fields:
+  - location   - where the log came from (only on FTS)
+  - srcuser    - extracts the source username
+  - dstuser    - extracts the destination (target) username
+  - user       - an alias to dstuser (only one of the two can be used)
+  - srcip      - source ip
+  - dstip      - dst ip
+  - srcport    - source port
+  - dstport    - destination port
+  - protocol   - protocol
+  - id         - event id
+  - url        - url of the event
+  - action     - event action (deny, drop, accept, etc)
+  - status     - event status (success, failure, etc)
+  - extra_data - Any extra data
+-->
+
+<decoder name="local_decoder_example">
+    <program_name>local_decoder_example</program_name>
+</decoder>
+<!-- Snort 3 JSON Alert Decoder -->
+<decoder name="snort3">
+  <prematch>{"timestamp":</prematch>
+</decoder>
+
+<decoder name="snort3-json">
+  <parent>snort3</parent>
+  <use_own_name>true</use_own_name>
+  <regex>"proto":"(\w+)"</regex>
+  <order>protocol</order>
+</decoder>
+
+<decoder name="snort3-src">
+  <parent>snort3</parent>
+  <use_own_name>true</use_own_name>
+  <regex>"src_ap":"(\d+\.\d+\.\d+\.\d+):</regex>
+  <order>srcip</order>
+</decoder>
+
+<decoder name="snort3-dst">
+  <parent>snort3</parent>
+  <use_own_name>true</use_own_name>
+  <regex>"dst_ap":"(\d+\.\d+\.\d+\.\d+):</regex>
+  <order>dstip</order>
+</decoder>
+
+<decoder name="snort3-action">
+  <parent>snort3</parent>
+  <use_own_name>true</use_own_name>
+  <regex>"action":"(\w+)"</regex>
+  <order>action</order>
+</decoder>
