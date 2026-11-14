@@ -53,7 +53,7 @@ Network Traffic
 ## How It Works
 
 **Layer 1 — Signature Detection (Snort 3)**
-Snort monitors live network traffic and matches packets against 29 custom rules covering reconnaissance (ICMP ping, port scan), credential attacks (SSH brute-force), and application-layer attacks (SQL injection, XSS, Shellshock, Log4Shell, directory traversal, web shells).
+Snort monitors live network traffic and matches packets against custom detection rules covering reconnaissance (ICMP ping, port scan), credential attacks (SSH brute-force), and application-layer attack patterns.
 
 **Layer 2 — Anomaly Detection (Isolation Forest)**
 Raw alerts are grouped into time-window feature vectors (packet count, distinct ports, distinct protocols, hour of day) per source IP. An Isolation Forest model trained exclusively on normal baseline traffic flags windows that deviate from learned normal behavior — catching attacks that have no matching signature.
@@ -75,15 +75,14 @@ A live dashboard with two tabs:
 
 | Metric | Value |
 |---|---|
-| Isolation Forest detection rate | 78.7% (148/188 attack windows) |
+| ML attack-window detection rate | 78.7% (148/188 attack windows) |
 | Isolation Forest false-positive rate | 6.9% (87/1,268 normal windows) |
-| Combined detection (Snort + ML) | 100% — no attack window missed by both layers |
 | Snort-only catches | 40 windows (low-and-slow brute-force ML missed) |
 | ML-only catches | 87 windows (behavioral anomalies with no matching signature) |
 | Both layers | 148 windows |
-| Total alerts stored | 53,000+ |
+| Alert records processed | 53,000+ during controlled lab testing |
 
-**Key insight:** Neither layer alone achieves full coverage. Snort catches quiet low-volume attacks that look statistically normal to the ML model. Isolation Forest catches high-volume anomalous behavior that may not match any predefined signature. Together they cover the full attack surface tested.
+ Neither layer alone achieves full coverage. Snort catches quiet low-volume attacks that look statistically normal to the ML model. Isolation Forest catches high-volume anomalous behavior that may not match any predefined signature. Together they cover the full attack surface tested.
 
 ---
 
